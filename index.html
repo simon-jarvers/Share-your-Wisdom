@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Share Your Wisdom 2026 – Ein Retreat für Stille, Begegnung und Peer-Learning. 24.–27. September in Ziegenrück, Thüringen."/>
+  <title>Share Your Wisdom 2026</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400;1,6..72,500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"/>
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            "background":               "#f2efe8",
+            "surface":                  "#f2efe8",
+            "surface-bright":           "#f7f5ef",
+            "surface-container-lowest": "#faf8f3",
+            "surface-container-low":    "#edeae3",
+            "surface-container":        "#e7e4dd",
+            "surface-container-high":   "#e1ded7",
+            "surface-container-highest":"#dbd8d1",
+            "surface-variant":          "#e5e2dd",
+            "surface-dim":              "#dcdad5",
+            "primary":                  "#334537",
+            "primary-container":        "#4a5d4e",
+            "primary-fixed":            "#d3e8d5",
+            "primary-fixed-dim":        "#b7ccb9",
+            "on-primary":               "#ffffff",
+            "on-primary-container":     "#c0d5c2",
+            "on-primary-fixed":         "#0e1f13",
+            "on-primary-fixed-variant": "#394b3d",
+            "secondary":                "#695d4a",
+            "secondary-container":      "#f2e0c8",
+            "secondary-fixed":          "#f2e0c8",
+            "secondary-fixed-dim":      "#d5c4ad",
+            "on-secondary":             "#ffffff",
+            "on-secondary-container":   "#6f6350",
+            "on-secondary-fixed":       "#231a0c",
+            "on-secondary-fixed-variant":"#504534",
+            "tertiary":                 "#4c3f31",
+            "tertiary-container":       "#655647",
+            "tertiary-fixed":           "#f4dfcb",
+            "tertiary-fixed-dim":       "#d7c3b0",
+            "on-tertiary":              "#ffffff",
+            "on-tertiary-container":    "#e0ccb9",
+            "on-tertiary-fixed":        "#241a0e",
+            "on-tertiary-fixed-variant":"#524436",
+            "on-surface":               "#1c1c19",
+            "on-surface-variant":       "#434843",
+            "on-background":            "#1c1c19",
+            "outline":                  "#737872",
+            "outline-variant":          "#c3c8c1",
+            "inverse-surface":          "#31302d",
+            "inverse-on-surface":       "#f3f0eb",
+            "inverse-primary":          "#b7ccb9",
+            "surface-tint":             "#506354",
+            "error":                    "#ba1a1a",
+            "error-container":          "#ffdad6",
+            "on-error":                 "#ffffff",
+            "on-error-container":       "#93000a",
+          },
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            sm:      "0.375rem",
+            md:      "0.5rem",
+            lg:      "0.75rem",
+            xl:      "1rem",
+            "2xl":   "1.5rem",
+            "3xl":   "2rem",
+            full:    "9999px",
+          },
+          fontFamily: {
+            serif:  ["Newsreader", "serif"],
+            sans:   ["Manrope", "sans-serif"],
+            body:   ["Manrope", "sans-serif"],
+            label:  ["Manrope", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Manrope', sans-serif;
+      /* base handled by the atmospheric rule below */
+      color: #1c1c19;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .font-serif   { font-family: 'Newsreader', serif; }
+    .font-display { font-family: 'Newsreader', serif; }
+
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+      vertical-align: middle;
+    }
+
+    /* Glassmorphism nav */
+    .nav-glass {
+      background-color: rgba(252, 249, 244, 0.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    /* Scroll reveal base — GSAP owns all animation; CSS sets initial hide only */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+
+    /* CTA button lift + brighten */
+    .cta-btn {
+      transition: transform 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  filter 250ms ease,
+                  opacity 300ms ease;
+      will-change: transform, filter;
+    }
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.09);
+    }
+
+    /* Card scale hover */
+    .hover-card {
+      transition: transform 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  box-shadow 250ms ease;
+      will-change: transform;
+    }
+    .hover-card:hover {
+      transform: scale(1.02);
+    }
+    /* Featured pricing card already has scale(1.04) baseline */
+    .pricing-card-featured.hover-card:hover {
+      transform: scale(1.06);
+    }
+
+    /* Image hover zoom wrapper */
+    .img-zoom { overflow: hidden; }
+    .img-zoom img {
+      transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .img-zoom:hover img { transform: scale(1.05); }
+
+    /* Mobile menu */
+    #mobile-menu {
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+    #mobile-menu.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-8px);
+    }
+    #mobile-menu.open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    /* Pricing scale effect */
+    .pricing-card-featured {
+      transform: scale(1.04);
+    }
+
+    /* Pull-quote left border accent */
+    .pull-quote-accent {
+      border-left: 3px solid #334537;
+      padding-left: 2rem;
+    }
+
+    /* ─── Deep forest green atmospheric base ───────────── */
+    /*     A fixed, very faint green canopy tints the whole page */
+    body {
+      background-color: #f2efe8; /* slightly richer than pure cream */
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9998;
+      pointer-events: none;
+      background:
+        radial-gradient(
+          ellipse 120% 60% at 50% -5%,
+          rgba(30, 52, 34, 0.055) 0%,
+          transparent 65%
+        ),
+        radial-gradient(
+          ellipse 80% 40% at 80% 110%,
+          rgba(20, 42, 24, 0.04) 0%,
+          transparent 60%
+        );
+    }
+
+    /* ─── Global grain overlay ─────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)' opacity='1'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 300px 300px;
+      opacity: 0.032;
+      mix-blend-mode: multiply;
+    }
+
+    /* ─── Hero: warm candlelight glow behind headline ───── */
+    .hero-glow::before {
+      content: '';
+      position: absolute;
+      /* Positioned to sit behind the headline text (bottom-left of hero) */
+      left: -10%;
+      bottom: 15%;
+      width: 70vw;
+      height: 65vh;
+      background: radial-gradient(
+        ellipse at 30% 70%,
+        rgba(210, 155, 60, 0.18) 0%,
+        rgba(180, 110, 30, 0.10) 35%,
+        transparent 70%
+      );
+      pointer-events: none;
+      z-index: 1;
+      filter: blur(40px);
+    }
+
+    /* Keep existing grain on hero (now combined with global) */
+    .hero-grain::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.055;
+      pointer-events: none;
+      z-index: 2;
+    }
+  </style>
+</head>
+
+<body class="bg-background text-on-surface selection:bg-primary-container selection:text-white">
+
+  <!-- ═══════════════════════════════════════════════════
+       NAV
+  ══════════════════════════════════════════════════════ -->
+  <nav id="nav" class="fixed top-0 w-full z-50 nav-glass border-b border-outline-variant/20">
+    <div class="flex justify-between items-center w-full px-6 md:px-12 py-5 max-w-screen-2xl mx-auto">
+
+      <!-- Logo -->
+      <a href="#" class="font-serif italic text-2xl text-primary tracking-tight hover:opacity-80 transition-opacity">
+        Share Your Wisdom
+      </a>
+
+      <!-- Desktop links -->
+      <div class="hidden md:flex gap-8 items-center">
+        <a href="#vision"      class="font-sans text-base font-medium text-secondary hover:text-primary transition-colors duration-300">Die Vision</a>
+        <a href="#open-space"  class="font-sans text-base font-medium text-secondary hover:text-primary transition-colors duration-300">Open Space</a>
+        <a href="#ort"         class="font-sans text-base font-medium text-secondary hover:text-primary transition-colors duration-300">Der Ort</a>
+        <a href="#unterkunft"  class="font-sans text-base font-medium text-secondary hover:text-primary transition-colors duration-300">Unterkünfte</a>
+        <a href="#preise"      class="font-sans text-base font-medium text-secondary hover:text-primary transition-colors duration-300">Preise</a>
+        <a href="#anmelden"
+           class="cta-btn ml-2 px-6 py-2.5 bg-primary text-on-primary rounded-full font-sans text-sm font-medium">
+          Jetzt anmelden
+        </a>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button id="menu-btn" class="md:hidden text-primary p-1" aria-label="Menü öffnen">
+        <span class="material-symbols-outlined text-3xl">menu</span>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full nav-glass border-t border-outline-variant/20 px-6 py-6 flex flex-col gap-5">
+      <a href="#vision"     class="font-serif text-xl text-primary" onclick="closeMobileMenu()">Die Vision</a>
+      <a href="#open-space" class="font-serif text-xl text-primary" onclick="closeMobileMenu()">Open Space</a>
+      <a href="#ort"        class="font-serif text-xl text-primary" onclick="closeMobileMenu()">Der Ort</a>
+      <a href="#unterkunft" class="font-serif text-xl text-primary" onclick="closeMobileMenu()">Unterkünfte</a>
+      <a href="#preise"     class="font-serif text-xl text-primary" onclick="closeMobileMenu()">Preise</a>
+      <a href="#anmelden"
+         class="mt-2 px-6 py-3 bg-primary text-on-primary rounded-full font-sans text-sm font-medium text-center"
+         onclick="closeMobileMenu()">
+        Jetzt anmelden
+      </a>
+    </div>
+  </nav>
+
+
+  <main>
+
+    <!-- ═══════════════════════════════════════════════════
+         HERO
+    ══════════════════════════════════════════════════════ -->
+    <section class="relative min-h-screen flex items-end pb-24 md:pb-36 overflow-hidden hero-grain hero-glow">
+      <!-- Background image -->
+      <div class="absolute inset-0 z-0">
+        <img
+          src="assets/images/hero-monk.png"
+          alt="Chi, der Mönch vor Ort, sitzt bei Sonnenaufgang über dem nebelverhangenen Saaletal in Thüringen"
+          class="w-full h-full object-cover object-center"
+        />
+        <!-- Gradient: soft top fade + strong bottom fade -->
+        <div class="absolute inset-0 bg-gradient-to-b from-primary/40 via-primary/10 to-primary/80"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-primary/5 via-transparent to-transparent"></div>
+      </div>
+
+      <!-- Content -->
+      <div class="relative z-10 w-full max-w-screen-2xl mx-auto px-6 md:px-12">
+        <div class="max-w-3xl">
+          <!-- Eyebrow -->
+          <p class="font-sans text-sm font-medium tracking-[0.2em] uppercase text-white/70 mb-6 reveal">
+            24. – 27. September 2026 &nbsp;·&nbsp; Ziegenrück, Thüringen
+          </p>
+          <!-- Headline -->
+          <h1 class="font-serif text-5xl md:text-7xl lg:text-[5.5rem] leading-[1.05] text-white mb-8 reveal reveal-delay-1">
+            Share Your<br/>
+            <em class="italic">Wisdom 2026</em>
+          </h1>
+          <!-- Subtext -->
+          <p class="font-sans text-lg md:text-xl text-white/85 font-light leading-relaxed max-w-xl mb-12 reveal reveal-delay-2">
+            Über Fragen, die im Alltag vielleicht manchmal untergehen. An einem magischen Ort. Mit Menschen, die dasselbe suchen.
+          </p>
+          <!-- CTAs -->
+          <div class="flex flex-col sm:flex-row gap-4 reveal reveal-delay-3">
+            <a href="#anmelden"
+               class="cta-btn px-8 py-4 bg-white text-primary rounded-xl font-sans font-medium text-base hover:bg-surface-container-low text-center">
+              Termin sichern
+            </a>
+            <a href="#vision"
+               class="cta-btn px-8 py-4 bg-transparent border border-white/30 text-white rounded-xl font-sans font-medium text-base hover:bg-white/10 backdrop-blur-sm text-center">
+              Mehr erfahren
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 opacity-50">
+        <span class="font-sans text-xs text-white tracking-[0.15em] uppercase">Entdecken</span>
+        <span class="material-symbols-outlined text-white text-xl animate-bounce">keyboard_arrow_down</span>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════
+         VISION – Wisdom Pull-Quote
+    ══════════════════════════════════════════════════════ -->
+    <section id="vision" class="py-36 px-6 md:px-12 bg-surface-container-low">
+      <div class="max-w-3xl mx-auto text-center">
+        <p class="font-sans text-sm font-medium tracking-[0.2em] uppercase text-secondary mb-8 reveal">
+          Die Vision
+        </p>
+        <h2 class="font-serif italic text-4xl md:text-5xl lg:text-[3.25rem] leading-[1.15] text-primary mb-14 reveal reveal-delay-1">
+          „Ein paar Tage, um gemeinsam innezuhalten, durchzuatmen und uns miteinander auszutauschen."
+        </h2>
+        <div class="space-y-6 font-sans text-lg md:text-xl text-secondary leading-relaxed max-w-2xl mx-auto reveal reveal-delay-2">
+          <p>
+            Dieses Mal möchten wir den Raum sehr offen gestalten. Es wird keinen Zeitplan geben, sondern wir möchten einen Open Space kreieren, in dem wir gemeinsam schauen, was entstehen wird.
+          </p>
+          <p>
+            Vielleicht beginnt der Tag mit Yoga oder einer stillen Gehmeditation, vielleicht mit einem Spaziergang durch die Natur, vielleicht mit Tee und Gesprächen. Es kann Raum geben für Begegnungen mit Chi oder anderen Mönchen und Nonnen, die vor Ort leben – und für Inputs, die aus der Gruppe entstehen.
+          </p>
+          <p>
+            Die Idee ist ein gemeinsamer Space, in dem wir voneinander lernen, Perspektiven teilen und uns gegenseitig inspirieren können.
+          </p>
+        </div>
+        <!-- Divider accent -->
+        <div class="mt-16 flex justify-center gap-2 reveal reveal-delay-3">
+          <span class="inline-block w-10 h-px bg-primary/30"></span>
+          <span class="inline-block w-3 h-px bg-primary/60"></span>
+          <span class="inline-block w-1 h-px bg-primary"></span>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════
+         OPEN SPACE – Asymmetric grid
+    ══════════════════════════════════════════════════════ -->
+    <section id="open-space" class="py-36 px-6 md:px-12 bg-surface max-w-screen-2xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-center">
+
+        <!-- Left: text -->
+        <div class="md:col-span-6 lg:col-span-7">
+          <p class="font-sans text-sm font-medium tracking-[0.2em] uppercase text-secondary mb-6 reveal">
+            Das Prinzip
+          </p>
+          <h2 class="font-serif text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.1] text-primary mb-8 reveal reveal-delay-1">
+            Open Space ohne<br/>
+            <em class="italic">festen Zeitplan</em>
+          </h2>
+          <p class="font-sans text-lg text-secondary leading-relaxed mb-12 max-w-lg reveal reveal-delay-2">
+            Es wird keinen Stundenplan geben. Wir schauen gemeinsam, was entstehen wird – aus dem Moment, aus der Gruppe, aus dem Ort. Vielleicht Yoga, vielleicht Stille, vielleicht ein langes Gespräch beim Tee.
+          </p>
+
+          <!-- Activity cards: 2x2 grid -->
+          <div class="grid grid-cols-2 gap-5">
+            <div class="hover-card p-6 bg-surface-container-low rounded-xl reveal reveal-delay-2">
+              <span class="material-symbols-outlined text-primary text-2xl mb-3 block">self_improvement</span>
+              <h4 class="font-serif text-lg text-primary mb-1">Yoga & Meditation</h4>
+              <p class="font-sans text-sm text-secondary leading-snug">Sanfte Übungen zur Zentrierung und Stille.</p>
+            </div>
+            <div class="hover-card p-6 bg-surface-container-low rounded-xl reveal reveal-delay-3">
+              <span class="material-symbols-outlined text-primary text-2xl mb-3 block">nature_people</span>
+              <h4 class="font-serif text-lg text-primary mb-1">Gehmeditation</h4>
+              <p class="font-sans text-sm text-secondary leading-snug">Achtsamkeit in jedem Schritt durch den Wald.</p>
+            </div>
+            <div class="hover-card p-6 bg-surface-container-low rounded-xl reveal reveal-delay-3">
+              <span class="material-symbols-outlined text-primary text-2xl mb-3 block">emoji_food_beverage</span>
+              <h4 class="font-serif text-lg text-primary mb-1">Tee & Gespräche</h4>
+              <p class="font-sans text-sm text-secondary leading-snug">Teerunden mit Chi und anderen Mönchen.</p>
+            </div>
+            <div class="hover-card p-6 bg-surface-container-low rounded-xl reveal reveal-delay-4">
+              <span class="material-symbols-outlined text-primary text-2xl mb-3 block">groups</span>
+              <h4 class="font-serif text-lg text-primary mb-1">Peer-Learning</h4>
+              <p class="font-sans text-sm text-secondary leading-snug">Workshops, die aus der Gruppe entstehen.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: image -->
+        <div class="md:col-span-6 lg:col-span-5 relative reveal reveal-delay-2">
+          <!-- Offset image composition -->
+          <div class="relative">
+            <div class="img-zoom rounded-2xl overflow-hidden shadow-sm aspect-[3/4]">
+              <img
+                src="assets/images/forest-path-dusk.png"
+                alt="Waldpfad in der Abenddämmerung im Plothental – Stille und Weite in der Natur"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <!-- Floating caption -->
+            <div class="absolute -bottom-6 -left-6 bg-surface-container-low rounded-xl px-5 py-4 shadow-sm max-w-[240px]">
+              <p class="font-serif italic text-sm text-primary leading-snug">
+                „...gemeinsam schauen, was entstehen wird."
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════
+         DAS PROGRAMM – Bento grid
+    ══════════════════════════════════════════════════════ -->
+    <section id="programm" class="py-36 px-6 md:px-12 bg-surface-container-low">
+      <div class="max-w-screen-2xl mx-auto">
+        <div class="mb-16 max-w-xl reveal">
+          <p class="font-sans text-sm font-medium tracking-[0.2em] uppercase text-secondary mb-4">
+            Bewährte Formate
+          </p>
+          <h2 class="font-serif text-4xl md:text-5xl text-primary leading-tight">
+            Was <em class="italic">entstehen</em> kann
+          </h2>
+        </div>
+
+        <!-- Bento grid -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+
+          <!-- Row 1: SYW Workshop tall | Klangmeditation tall — both portrait images need height -->
+
+          <!-- SYW Workshop -->
+          <div class="hover-card md:col-span-7 relative rounded-2xl overflow-hidden min-h-[520px] reveal">
+            <div class="img-zoom absolute inset-0">
+              <img
+                src="assets/images/lookout-window.png"
+                alt="Blick durchs Fenster auf das Saaletal – Stille und Weite"
+                class="w-full h-full object-cover object-center"
+              />
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 p-8">
+              <span class="inline-block px-3 py-1 bg-white/15 backdrop-blur-sm text-white text-xs font-sans font-medium rounded-full mb-4 tracking-wide">⭐ Highlight</span>
+              <h3 class="font-serif text-2xl md:text-3xl text-white mb-2">Share Your Wisdom Workshop</h3>
+              <p class="font-sans text-sm text-white/80 leading-relaxed max-w-sm">
+                Journaling, Clustern, Breakouts, Plenum – das Format aus 2025, das alle begeistert hat. Wird wiederholt.
+              </p>
+            </div>
+          </div>
+
+          <!-- Klangmeditation — full right-column height, portrait image shows the whole scene -->
+          <div class="hover-card md:col-span-5 relative rounded-2xl overflow-hidden min-h-[520px] reveal reveal-delay-1">
+            <div class="img-zoom absolute inset-0">
+              <img
+                src="assets/images/meditation-night.png"
+                alt="Gruppe bei gemeinsamer Abendmeditation im Pavillon – Klangschalenmeditation mit Chi"
+                class="w-full h-full object-cover object-center"
+              />
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/25 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 p-8">
+              <h3 class="font-serif text-2xl text-white mb-2">Klangmeditation mit Chi</h3>
+              <p class="font-sans text-sm text-white/80 leading-relaxed">Entspannung und Stille mit dem Mönch vor Ort.</p>
+            </div>
+          </div>
+
+          <!-- Row 2: Teerunde (text) | Gehmeditation (narrow+tall portrait) | Mastermind (text) -->
+
+          <!-- Teerunde -->
+          <div class="hover-card md:col-span-4 rounded-2xl bg-surface-container p-8 flex flex-col justify-between min-h-[360px] reveal reveal-delay-1">
+            <span class="material-symbols-outlined text-primary text-3xl">spa</span>
+            <div>
+              <h3 class="font-serif text-xl text-primary mb-2">Teerunde mit Chi</h3>
+              <p class="font-sans text-sm text-secondary leading-relaxed">Loslassen, Achtsamkeit und tiefgründige Gespräche über das einfache Leben.</p>
+            </div>
+          </div>
+
+          <!-- Gehmeditation — narrower card, portrait image fills naturally -->
+          <div class="hover-card md:col-span-4 relative rounded-2xl overflow-hidden min-h-[360px] reveal reveal-delay-2">
+            <div class="img-zoom absolute inset-0">
+              <img
+                src="assets/images/walking-meditation.png"
+                alt="Gehmeditation durch den Wald – Achtsamkeit in jedem Schritt"
+                class="w-full h-full object-cover object-center"
+              />
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 p-8">
+              <h3 class="font-serif text-xl text-white mb-2">Gehmeditation & Wanderungen</h3>
+              <p class="font-sans text-sm text-white/80 leading-relaxed">
+                Stille Spaziergänge durch das Plothental und entlang der Saale.
+              </p>
+            </div>
+          </div>
+
+          <!-- Mastermind -->
+          <div class="hover-card md:col-span-4 rounded-2xl bg-primary p-8 min-h-[360px] flex flex-col justify-between reveal reveal-delay-3">
+            <span class="material-symbols-outlined text-on-primary-container text-3xl">record_voice_over</span>
+            <div>
+              <h3 class="font-serif text-xl text-on-primary mb-2">Impulse & Mastermind</h3>
+              <p class="font-sans text-sm text-on-primary-container/90 leading-relaxed">
+                Kurzvorträge (10–15 min) + Diskussion, Mastermind-Runden, Breakout-Sessions aus der Gruppe.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════
+         DER ORT
+    ══════════════════════════════════════════════════════ -->
+    <section id="ort" class="py-36 bg-primary text-on-primary overflow-hidden">
+      <div class="max-w-screen-2xl mx-auto px-6 md:px-12">
+
+        <div class="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
+
+          <!-- Image mosaic -->
+          <div class="w-full lg:w-1/2 reveal">
+            <div class="grid grid-cols-2 gap-4">
+              <!-- Tall left image: bench overlooking Saale bend — portrait, perfect for tall left slot -->
+              <div class="img-zoom rounded-xl overflow-hidden row-span-2">
+                <img
+                  src="assets/images/saale-bench-viewpoint.png"
+                  alt="Bank mit Blick auf die Saaleschleife bei Ziegenrück"
+                  class="w-full h-full object-cover min-h-[360px]"
+                />
+              </div>
+              <!-- Top right: aerial of Saale meander with rapeseed fields -->
+              <div class="img-zoom rounded-xl overflow-hidden mt-8">
+                <img
+                  src="assets/images/saale-meander-aerial.png"
+                  alt="Luftblick auf die Saaleschleife mit grünen Wäldern und gelben Rapsfeldern"
+                  class="w-full h-48 object-cover object-center"
+                />
+              </div>
+              <!-- Bottom right: viaduct close-up from below, blue sky -->
+              <div class="img-zoom rounded-xl overflow-hidden">
+                <img
+                  src="assets/images/viaduct-closeup.png"
+                  alt="Das historische Steinviadukt in Ziegenrück aus der Froschperspektive"
+                  class="w-full h-48 object-cover object-bottom"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Text -->
+          <div class="w-full lg:w-1/2 reveal reveal-delay-2">
+            <p class="font-sans text-sm font-medium tracking-[0.2em] uppercase text-on-primary-container mb-6">
+              Der Ort
+            </p>
+            <h2 class="font-serif text-4xl md:text-5xl lg:text-[3.25rem] leading-[1.1] mb-8">
+              Naturcamping Plothental,<br/>
+              <em class="italic">Ziegenrück</em>
+            </h2>
+            <p class="font-sans text-lg opacity-85 leading-relaxed mb-10 max-w-lg">
+              Eingebettet in das Tal des ruhigen Plothenbach, 500 Meter von der Saale entfernt. Umgeben von schroffen Felsen und tiefen Wäldern. Chi und andere Mönche leben vor Ort und stehen für Begegnungen zur Verfügung.
+            </p>
+
+            <!-- Location details list -->
+            <ul class="space-y-4 mb-10">
+              <li class="flex items-start gap-4">
+                <span class="material-symbols-outlined text-on-primary-container mt-0.5 flex-shrink-0">location_on</span>
+                <div>
+                  <span class="font-sans font-medium">Plothental 9, 07924 Ziegenrück</span>
+                  <p class="text-sm opacity-70 mt-0.5">Thüringen, Deutschland</p>
+                </div>
+              </li>
+              <li class="flex items-start gap-4">
+                <span class="material-symbols-outlined text-on-primary-container mt-0.5 flex-shrink-0">waves</span>
+                <div>
+                  <span class="font-sans font-medium">Direkter Zugang zur Saale</span>
+                  <p class="text-sm opacity-70 mt-0.5">500 m Fußweg zum Fluss</p>
+                </div>
+              </li>
+              <li class="flex items-start gap-4">
+                <span class="material-symbols-outlined text-on-primary-container mt-0.5 flex-shrink-0">forest</span>
+                <div>
+                  <span class="font-sans font-medium">Umgeben von Thüringer Wald</span>
+                  <p class="text-sm opacity-70 mt-0.5">Wanderwege direkt vom Platz</p>
+                </div>
+              </li>
+              <li class="flex items-start gap-4">
+                <span class="material-symbols-outlined text-on-primary-container mt-0.5 flex-shrink-0">schedule</span>
+                <div>
+                  <span class="font-sans font-medium">Check-in: 15:00–20:00 Uhr</span>
+                  <p class="text-sm opacity-70 mt-0.5">Check-out bis 11:00 Uhr</p>
+                </div>
+              </li>
+            </ul>
+
+            <!-- Campsite logo + link -->
+            <a href="https://www.naturcamping-plothental.de" target="_blank" rel="noopener"
+               class="inline-flex items-center gap-4 px-6 py-4 bg-white/10 hover:bg-white/15 rounded-xl transition-colors duration-300">
+              <img
+                src="assets/images/naturcamping-logo.png"
+                alt="Naturcamping Plothental Logo"
+                class="h-10 w-10 rounded-md object-contain bg-white p-1"
+              />
+              <div>
+                <p class="font-sans text-sm font-medium">Naturcamping Plothental</p>
+                <p class="font-sans text-xs opacity-60">naturcamping-plothental.de</p>
+              </div>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════
+         UNTERKÜNFTE
+    ══════════════════════════════════════════════════════ -->
+    <section id="unterkunft" class="py-36 px-6 md:px-12 bg-surface">
+      <div class="max-w-screen-2xl mx-auto">
+
+        <div class="text-center mb-16 reveal">
+          <p class="font-sans text-sm font-medium tracking-[0.2em] uppercase text-secondary mb-4">
+            Unterkünfte
+          </p>
+          <h2 class="font-serif text-4xl md:text-5xl text-primary">
+            Geborgenheit <em class="italic">finden</em>
+          </h2>
+          <p class="font-sans text-lg text-secondary mt-5 max-w-lg mx-auto leading-relaxed">
+            Wähle die Form der Ruhe, die zu dir passt.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+          <!-- Bungalows -->
+          <div class="group cursor-pointer hover-card reveal">
+            <div class="img-zoom rounded-2xl mb-6 aspect-[4/3]">
+              <img
+                src="assets/images/bungalow-porch.png"
+                alt="Bungalow mit Veranda am Naturcamping Plothental – Person genießt den Morgen"
+                class="w-full h-full object-cover object-center"
+              />
+            </div>
+            <h3 class="font-serif text-2xl text-primary mb-2">Bungalows</h3>
+            <p class="font-sans text-sm text-secondary leading-relaxed mb-4">
+              Schlichte Holzbungalows mit Küche, Bad und Bettzeug inklusive. 23 Betten im oberen Bereich des Platzes.
+            </p>
+            <div class="flex items-center gap-2 text-secondary">
+              <span class="material-symbols-outlined text-base">check_circle</span>
+              <span class="font-sans text-xs">Küche & Bad vorhanden</span>
+            </div>
+            <div class="flex items-center gap-2 text-secondary mt-1">
+              <span class="material-symbols-outlined text-base">check_circle</span>
+              <span class="font-sans text-xs">Bettzeug inklusive</span>
+            </div>
+          </div>
+
+          <!-- Hostel -->
+          <div class="group cursor-pointer reveal reveal-delay-1">
+            <div class="img-zoom rounded-2xl mb-6 aspect-[4/3]">
+              <img
+                src="assets/images/ziegenrueck-town.png"
+                alt="Das Hostel in Ziegenrück – Fachwerkhäuser am Fuße des bewaldeten Hügels"
+                class="w-full h-full object-cover object-center"
+              />
+            </div>
+            <h3 class="font-serif text-2xl text-primary mb-2">Hostel & Mehrbett</h3>
+            <p class="font-sans text-sm text-secondary leading-relaxed mb-4">
+              Gemeinschaftliches Wohnen im Hostel (Platz d. Jugend 5, Ziegenrück) – ideal für Austausch und Verbindung.
+            </p>
+            <div class="flex items-center gap-2 text-secondary">
+              <span class="material-symbols-outlined text-base">check_circle</span>
+              <span class="font-sans text-xs">Kurze Fahrt zum Campingplatz</span>
+            </div>
+            <div class="flex items-center gap-2 text-secondary mt-1">
+              <span class="material-symbols-outlined text-base">check_circle</span>
+              <span class="font-sans text-xs">Gemeinschaftsatmosphäre</span>
+            </div>
+          </div>
+
+          <!-- Zeltwiese -->
+          <div class="group cursor-pointer reveal reveal-delay-2">
+            <div class="img-zoom rounded-2xl mb-6 aspect-[4/3]">
+              <img
+                src="assets/images/campsite-trees-stream.png"
+                alt="Zelte unter Bäumen am Plothenbach – grüne Natur pur"
+                class="w-full h-full object-cover object-center"
+              />
+            </div>
+            <h3 class="font-serif text-2xl text-primary mb-2">Zeltwiese & Van</h3>
+            <p class="font-sans text-sm text-secondary leading-relaxed mb-4">
+              Ganz nah an der Erde. Schlafe unter dem weiten Sternenzelt von Ziegenrück – kein Reservierungsbedarf, spontan möglich.
+            </p>
+            <div class="flex items-center gap-2 text-secondary">
+              <span class="material-symbols-outlined text-base">check_circle</span>
+              <span class="font-sans text-xs">Direkt am Plothenbach</span>
+            </div>
+            <div class="flex items-center gap-2 text-secondary mt-1">
+              <span class="material-symbols-outlined text-base">check_circle</span>
+              <span class="font-sans text-xs">Auch Van/Bulli-Stellplatz</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════
+         DER PAVILLON – Impressionen
+    ══════════════════════════════════════════════════════ -->
+    <section class="py-36 px-6 md:px-12 bg-surface-container-low">
+      <div class="max-w-screen-2xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+
+          <!-- Text left -->
+          <div class="reveal">
+            <p class="font-sans text-sm font-medium tracking-[0.2em] uppercase text-secondary mb-6">
+              Der Pavillon
+            </p>
+            <h2 class="font-serif text-4xl md:text-5xl text-primary leading-tight mb-8">
+              Ein Ort zum<br/>
+              <em class="italic">Zusammenkommen</em>
+            </h2>
+            <p class="font-sans text-lg text-secondary leading-relaxed mb-8 max-w-lg">
+              Der überdachte Gemeinschaftspavillon des Campingplatzes ist unser Herzstück. Hier entstehen Morgenkreise, Abendgespräche, Klangmeditationen – und alles, was die Gruppe spontan erschafft.
+            </p>
+            <!-- Quote pullout -->
+            <blockquote class="pull-quote-accent font-serif italic text-xl text-primary/80 leading-relaxed max-w-sm">
+              Wir freuen uns darauf, diese Zeit und den magischen Ort mit euch zu teilen.
+            </blockquote>
+          </div>
+
+          <!-- Images right -->
+          <div class="grid grid-cols-2 gap-4 reveal reveal-delay-2">
+            <div class="img-zoom rounded-xl overflow-hidden aspect-[4/3]">
+              <img
+                src="assets/images/campsite-overview.png"
+                alt="Blick auf den Campingplatz im Plothental"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="img-zoom rounded-xl overflow-hidden aspect-[4/3] mt-8">
+              <img
+                src="assets/images/viaduct.png"
+                alt="Das historische Steinviadukt von Ziegenrück – Wahrzeichen des Ortes"
+                class="w-full h-full object-cover object-center"
+              />
+            </div>
+            <div class="img-zoom rounded-xl overflow-hidden col-span-2 aspect-[16/9]">
+              <img
+                src="assets/images/pavilion.png"
+                alt="Der Gemeinschaftspavillon am Naturcamping Plothental – unser Herzstück"
+                class="w-full h-full object-cover object-center"
+              />
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════
+         ANREISE
+    ══════════════════════════════════════════════════════ -->
+    <section id="anreise" class="py-36 px-6 md:px-12 bg-surface">
+      <div class="max-w-screen-2xl mx-auto">
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+          <!-- Left: Flixbus -->
+          <div class="reveal">
+            <p class="font-sans text-sm font-medium tracking-[0.2em] uppercase text-secondary mb-6">
+              Anreise
+            </p>
+            <h2 class="font-serif text-4xl md:text-5xl text-primary leading-tight mb-8">
+              Der Weg nach<br/>
+              <em class="italic">Ziegenrück</em>
+            </h2>
+            <p class="font-sans text-lg text-secondary leading-relaxed mb-10 max-w-md">
+              Schleiz ist die nächste Flixbus-Haltestelle – ca. 3 Stunden von Berlin und München. Von dort organisieren wir einen gemeinsamen Shuttle zum Platz.
+            </p>
+
+            <!-- Flixbus table -->
+            <div class="bg-surface-container-low rounded-2xl overflow-hidden">
+              <div class="px-6 py-4 border-b border-outline-variant/30">
+                <h3 class="font-serif text-xl text-primary">Flixbus nach Schleiz</h3>
+              </div>
+              <div class="divide-y divide-outline-variant/20">
+                <div class="px-6 py-4 flex justify-between items-center">
+                  <div>
+                    <p class="font-sans text-sm font-medium text-on-surface">Berlin ZOB</p>
+                    <p class="font-sans text-xs text-secondary mt-0.5">ab 9:20 Uhr</p>
+                  </div>
+                  <div class="text-right">
+                    <p class="font-sans text-sm font-medium text-primary">Schleiz 12:30</p>
+                    <p class="font-sans text-xs text-secondary mt-0.5">ca. 3h 10min</p>
+                  </div>
+                </div>
+                <div class="px-6 py-4 flex justify-between items-center">
+                  <div>
+                    <p class="font-sans text-sm font-medium text-on-surface">Berlin ZOB</p>
+                    <p class="font-sans text-xs text-secondary mt-0.5">ab 14:40 Uhr</p>
+                  </div>
+                  <div class="text-right">
+                    <p class="font-sans text-sm font-medium text-primary">Schleiz 18:00</p>
+                    <p class="font-sans text-xs text-secondary mt-0.5">ca. 3h 20min</p>
+                  </div>
+                </div>
+                <div class="px-6 py-4 flex justify-between items-center">
+                  <div>
+                    <p class="font-sans text-sm font-medium text-on-surface">München ZOB</p>
+                    <p class="font-sans text-xs text-secondary mt-0.5">ab 8:45 Uhr</p>
+                  </div>
+                  <div class="text-right">
+                    <p class="font-sans text-sm font-medium text-primary">Schleiz 12:45</p>
+                    <p class="font-sans text-xs text-secondary mt-0.5">ca. 4h</p>
+                  </div>
+                </div>
+                <div class="px-6 py-4 flex justify-between items-center">
+                  <div>
+                    <p class="font-sans text-sm font-medium text-on-surface">München ZOB</p>
+                    <p class="font-sans text-xs text-secondary mt-0.5">ab 14:30 Uhr</p>
+                  </div>
+                  <div class="text-right">
+                    <p class="font-sans text-sm font-medium text-primary">Schleiz 18:25</p>
+                    <p class="font-sans text-xs text-secondary mt-0.5">ca. 3h 55min</p>
+                  </div>
+                </div>
+              </div>
+              <div class="px-6 py-3 bg-surface-container text-xs text-secondary font-sans">
+                Verbindungen aus 2025 – bitte vor Anreise prüfen
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: images + practical info -->
+          <div class="space-y-6 reveal reveal-delay-2">
+
+            <!-- Signpost image — iconic, perfect for Anreise -->
+            <div class="img-zoom rounded-2xl overflow-hidden">
+              <img
+                src="assets/images/signpost-distances.png"
+                alt="Hölzernes Wegweiserschild in Ziegenrück: München 300km, Berlin 300km"
+                class="w-full h-96 object-cover object-center"
+              />
+            </div>
+
+            <!-- Two info cards side by side -->
+            <div class="grid grid-cols-2 gap-4">
+              <div class="p-6 bg-surface-container-low rounded-2xl">
+                <span class="material-symbols-outlined text-primary text-xl mb-3 block">directions_bus</span>
+                <h4 class="font-serif text-base text-primary mb-2">Shuttle ab Schleiz</h4>
+                <p class="font-sans text-xs text-secondary leading-relaxed">
+                  Wir koordinieren Shuttle-Fahrten vom Bahnhof direkt zum Platz.
+                </p>
+              </div>
+              <div class="p-6 bg-surface-container-low rounded-2xl">
+                <span class="material-symbols-outlined text-primary text-xl mb-3 block">directions_car</span>
+                <h4 class="font-serif text-base text-primary mb-2">Fahrgemeinschaften</h4>
+                <p class="font-sans text-xs text-secondary leading-relaxed">
+                  Parkplatz vor Ort vorhanden. Wir helfen bei der Koordination.
+                </p>
+              </div>
+            </div>
+
+            <!-- River image -->
+            <div class="img-zoom rounded-2xl overflow-hidden aspect-[16/9]">
+              <img
+                src="assets/images/saale-river.png"
+                alt="Die Saale bei Ziegenrück – ruhiges Wasser zwischen bewaldeten Ufern"
+                class="w-full h-full object-cover object-center"
+              />
+            </div>
+            <p class="font-sans text-xs text-secondary text-center italic -mt-2">
+              Die Saale bei Ziegenrück – 500 Meter vom Campingplatz entfernt.
+            </p>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════
+         FINANZIELLE TRANSPARENZ
+    ══════════════════════════════════════════════════════ -->
+    <section id="preise" class="py-36 px-6 md:px-12 bg-surface-container-high">
+      <div class="max-w-4xl mx-auto">
+
+        <div class="text-center mb-16 reveal">
+          <p class="font-sans text-sm font-medium tracking-[0.2em] uppercase text-secondary mb-4">
+            Finanzielle Transparenz
+          </p>
+          <h2 class="font-serif text-4xl md:text-5xl text-primary mb-6">
+            Pay What<br/>
+            <em class="italic">You Can</em>
+          </h2>
+          <p class="font-sans text-lg text-secondary leading-relaxed max-w-xl mx-auto">
+            Wir nutzen ein solidarisches Preismodell, das das Retreat für alle zugänglich macht und gleichzeitig die Kosten für Unterkunft, Verpflegung und Organisation deckt.
+          </p>
+        </div>
+
+        <!-- Pricing cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center mb-14">
+
+          <!-- Community -->
+          <div class="hover-card bg-surface rounded-2xl p-8 reveal">
+            <p class="font-sans text-xs font-medium tracking-widest uppercase text-secondary mb-4">Community</p>
+            <div class="font-serif text-5xl text-primary mb-2">€ –</div>
+            <p class="font-sans text-sm font-medium text-on-surface mb-4">Niedrigschwellig</p>
+            <div class="h-px bg-outline-variant/30 mb-4"></div>
+            <p class="font-sans text-xs text-secondary leading-relaxed italic">
+              Für Studierende & Menschen mit geringerem Budget. Kein Retreat soll an Geld scheitern.
+            </p>
+          </div>
+
+          <!-- Sustainer – featured -->
+          <div class="hover-card bg-surface rounded-2xl p-8 pricing-card-featured shadow-lg shadow-primary/8 ring-1 ring-primary/10 reveal reveal-delay-1">
+            <p class="font-sans text-xs font-medium tracking-widest uppercase text-primary mb-4">Sustainer</p>
+            <div class="font-serif text-5xl text-primary mb-2">€ –</div>
+            <p class="font-sans text-sm font-medium text-on-surface mb-4">Der reguläre Beitrag</p>
+            <div class="h-px bg-outline-variant/30 mb-4"></div>
+            <p class="font-sans text-xs text-secondary leading-relaxed italic">
+              Deckt deinen fairen Anteil an Unterkunft, Verpflegung und Organisation für 3 Nächte.
+            </p>
+          </div>
+
+          <!-- Supporter -->
+          <div class="hover-card bg-surface rounded-2xl p-8 reveal reveal-delay-2">
+            <p class="font-sans text-xs font-medium tracking-widest uppercase text-secondary mb-4">Supporter</p>
+            <div class="font-serif text-5xl text-primary mb-2">€ +</div>
+            <p class="font-sans text-sm font-medium text-on-surface mb-4">Unterstütze andere</p>
+            <div class="h-px bg-outline-variant/30 mb-4"></div>
+            <p class="font-sans text-xs text-secondary leading-relaxed italic">
+              Dein Plus ermöglicht es anderen, zum reduzierten Beitrag teilzunehmen. Danke.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Pricing note -->
+        <div class="text-center reveal reveal-delay-3">
+          <p class="font-sans text-sm text-secondary italic max-w-xl mx-auto leading-relaxed">
+            Die konkreten Beträge für 2026 werden nach Absprache mit der Location und Finalisierung des Konzepts bekannt gegeben. 2025 lagen die Beiträge bei 60–100 € für 2 Nächte inklusive Verpflegung.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════
+         SAVE THE DATE / ANMELDUNG
+    ══════════════════════════════════════════════════════ -->
+    <section id="anmelden" class="py-36 px-6 md:px-12 bg-surface">
+      <div class="max-w-screen-xl mx-auto">
+        <div class="relative bg-primary-container rounded-3xl px-8 py-20 md:px-20 md:py-28 flex flex-col items-center text-center overflow-hidden">
+
+          <!-- Background decorative -->
+          <div class="absolute inset-0 opacity-5 pointer-events-none" aria-hidden="true">
+            <div class="absolute -right-12 -top-12 w-72 h-72 bg-white rounded-full"></div>
+            <div class="absolute -left-8 -bottom-8 w-48 h-48 bg-white rounded-full"></div>
+          </div>
+          <div class="absolute top-8 right-8 opacity-10">
+            <span class="material-symbols-outlined text-white" style="font-size:8rem">calendar_month</span>
+          </div>
+
+          <!-- Content -->
+          <p class="font-sans text-sm font-medium tracking-[0.2em] uppercase text-white/60 mb-6 reveal">
+            Sei dabei
+          </p>
+          <h2 class="font-serif text-4xl md:text-6xl text-white mb-6 reveal reveal-delay-1">
+            Save the Date
+          </h2>
+          <p class="font-serif italic text-2xl md:text-4xl text-white/90 font-light mb-4 reveal reveal-delay-2">
+            24. – 27. September 2026
+          </p>
+          <p class="font-sans text-lg text-white/70 mb-3 reveal reveal-delay-2">
+            Naturcamping Plothental, Ziegenrück, Thüringen
+          </p>
+          <p class="font-sans text-base text-white/50 italic mb-14 reveal reveal-delay-2">
+            Wenn du Lust hast dabei zu sein, melde dich gern an.
+          </p>
+
+          <!-- Email form -->
+          <div class="w-full max-w-md reveal reveal-delay-3">
+            <div class="flex bg-surface rounded-full overflow-hidden shadow-sm mb-4">
+              <input
+                type="email"
+                placeholder="Deine E-Mail-Adresse"
+                class="flex-1 bg-transparent border-none focus:ring-0 text-on-surface font-sans text-sm px-6 py-4"
+              />
+              <button
+                class="cta-btn bg-primary text-white px-7 py-4 rounded-full font-sans text-sm font-medium whitespace-nowrap"
+              >
+                Interesse anmelden
+              </button>
+            </div>
+            <p class="font-sans text-xs text-white/50 text-center">
+              Wir informieren dich, sobald die offizielle Anmeldung startet. Kein Spam.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════════ -->
+  <footer class="w-full pt-20 pb-10 px-6 md:px-12 bg-primary">
+    <div class="max-w-screen-2xl mx-auto">
+
+      <!-- Top row -->
+      <div class="flex flex-col md:flex-row justify-between gap-12 mb-16 pb-16 border-b border-white/10">
+
+        <!-- Brand -->
+        <div class="max-w-xs">
+          <span class="font-serif italic text-2xl text-white block mb-4">Share Your Wisdom</span>
+          <p class="font-sans text-sm text-white/60 leading-relaxed">
+            Ein Rückzugsort für die Seele. Peer-Learning, Stille und echte Begegnung in der Natur.
+          </p>
+        </div>
+
+        <!-- Nav links -->
+        <div class="flex flex-col gap-3">
+          <p class="font-sans text-xs font-medium tracking-widest uppercase text-white/30 mb-2">Navigation</p>
+          <a href="#vision"     class="font-sans text-sm text-white/70 hover:text-white transition-colors">Die Vision</a>
+          <a href="#open-space" class="font-sans text-sm text-white/70 hover:text-white transition-colors">Open Space</a>
+          <a href="#ort"        class="font-sans text-sm text-white/70 hover:text-white transition-colors">Der Ort</a>
+          <a href="#unterkunft" class="font-sans text-sm text-white/70 hover:text-white transition-colors">Unterkünfte</a>
+          <a href="#anreise"    class="font-sans text-sm text-white/70 hover:text-white transition-colors">Anreise</a>
+          <a href="#preise"     class="font-sans text-sm text-white/70 hover:text-white transition-colors">Preise</a>
+        </div>
+
+        <!-- Date info -->
+        <div class="flex flex-col gap-3">
+          <p class="font-sans text-xs font-medium tracking-widest uppercase text-white/30 mb-2">Das Retreat</p>
+          <div class="flex items-center gap-3 text-white/70">
+            <span class="material-symbols-outlined text-base text-white/40">calendar_today</span>
+            <span class="font-sans text-sm">24.–27. September 2026</span>
+          </div>
+          <div class="flex items-center gap-3 text-white/70">
+            <span class="material-symbols-outlined text-base text-white/40">location_on</span>
+            <span class="font-sans text-sm">Ziegenrück, Thüringen</span>
+          </div>
+          <div class="flex items-center gap-3 text-white/70">
+            <span class="material-symbols-outlined text-base text-white/40">group</span>
+            <span class="font-sans text-sm">~20–25 Personen</span>
+          </div>
+          <!-- Campsite logo -->
+          <div class="flex items-center gap-3 mt-3 pt-3 border-t border-white/10">
+            <img
+              src="assets/images/naturcamping-logo.png"
+              alt="Naturcamping Plothental Logo"
+              class="h-8 w-8 rounded object-contain bg-white p-0.5"
+            />
+            <span class="font-sans text-xs text-white/50">Naturcamping Plothental</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom row -->
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="font-sans text-xs text-white/40">
+          © 2026 Share Your Wisdom. Ein kostendeckendes Retreat von Freunden für Freunde.
+        </p>
+        <div class="flex gap-8">
+          <a href="#" class="font-sans text-xs text-white/40 hover:text-white/70 transition-colors">Impressum</a>
+          <a href="#" class="font-sans text-xs text-white/40 hover:text-white/70 transition-colors">Datenschutz</a>
+          <a href="#" class="font-sans text-xs text-white/40 hover:text-white/70 transition-colors">Kontakt</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       SCRIPTS
+  ══════════════════════════════════════════════════════ -->
+  <script>
+    // ── Mobile menu ─────────────────────────────────────
+    const menuBtn  = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    let menuOpen = false;
+
+    menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      if (menuOpen) {
+        mobileMenu.classList.remove('hidden');
+        mobileMenu.classList.add('open');
+        menuBtn.querySelector('.material-symbols-outlined').textContent = 'close';
+      } else {
+        closeMobileMenu();
+      }
+    });
+
+    function closeMobileMenu() {
+      menuOpen = false;
+      mobileMenu.classList.remove('open');
+      mobileMenu.classList.add('hidden');
+      menuBtn.querySelector('.material-symbols-outlined').textContent = 'menu';
+    }
+
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+      if (menuOpen && !mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
+        closeMobileMenu();
+      }
+    });
+
+
+    // ── Nav shrink on scroll ─────────────────────────────
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 60) {
+        nav.classList.add('shadow-sm');
+      } else {
+        nav.classList.remove('shadow-sm');
+      }
+    }, { passive: true });
+
+
+    // ── GSAP: scroll reveals + hero parallax ─────────────
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Hero parallax
+      gsap.to('.hero-grain img', {
+        yPercent: 25,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.hero-grain',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true,
+        }
+      });
+
+      // Scroll reveals: stagger section children 100ms apart, breathe in slowly
+      gsap.set('.reveal', { opacity: 0, y: 28 });
+
+      document.querySelectorAll('section, .hero-grain').forEach(section => {
+        const items = gsap.utils.toArray(section.querySelectorAll('.reveal'));
+        if (!items.length) return;
+
+        gsap.to(items, {
+          opacity: 1,
+          y: 0,
+          duration: 0.95,
+          ease: 'sine.out',
+          stagger: 0.1,
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 82%',
+            toggleActions: 'play none none none',
+          },
+        });
+      });
+
+    } else {
+      // Fallback if GSAP unavailable: make everything visible
+      document.querySelectorAll('.reveal').forEach(el => {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      });
+    }
+
+
+    // ── Email form handler ───────────────────────────────
+    const emailForm = document.querySelector('#anmelden form');
+    if (emailForm) {
+      emailForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+      });
+    }
+
+    // Prevent default on the button (no form tag – intercept click)
+    const signupBtn = document.querySelector('#anmelden button');
+    if (signupBtn) {
+      signupBtn.addEventListener('click', (e) => {
+        const input = signupBtn.previousElementSibling;
+        if (input && input.value) {
+          signupBtn.textContent = '✓ Eingetragen';
+          signupBtn.disabled = true;
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
