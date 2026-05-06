@@ -1073,20 +1073,16 @@
             Wenn du Lust hast dabei zu sein, melde dich gern an.
           </p>
 
-          <!-- Email form -->
+          <!-- Interest sign-up -->
           <div class="w-full max-w-md reveal reveal-delay-3">
-            <div class="flex flex-col sm:flex-row gap-3 sm:gap-0 sm:bg-surface sm:rounded-full sm:overflow-hidden sm:shadow-sm mb-4">
-              <input
-                type="email"
-                placeholder="Deine E-Mail-Adresse"
-                class="flex-1 bg-surface sm:bg-transparent border-none focus:ring-0 text-on-surface font-sans text-sm px-6 py-4 rounded-full sm:rounded-none shadow-sm sm:shadow-none"
-              />
-              <button
-                class="cta-btn bg-primary text-white px-7 py-4 rounded-full font-sans text-sm font-medium whitespace-nowrap"
-              >
-                Interesse anmelden
-              </button>
-            </div>
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSe5u6Xhd-KzXIesgaq2RQJSrx9gCcuIMYfPRppSLvzM4njSMA/viewform"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="cta-btn inline-block bg-primary text-white px-8 py-4 rounded-full font-sans text-sm font-medium mb-4"
+            >
+              Interesse anmelden
+            </a>
             <p class="font-sans text-xs text-white/50 text-center">
               Wir informieren dich, sobald die offizielle Anmeldung startet. Kein Spam.
             </p>
@@ -1167,11 +1163,6 @@
         <p class="font-sans text-xs text-white/40">
           © 2026 Share Your Wisdom. Ein kostendeckendes Retreat von Freunden für Freunde.
         </p>
-        <div class="flex gap-8">
-          <a href="#" class="font-sans text-xs text-white/40 hover:text-white/70 transition-colors">Impressum</a>
-          <a href="#" class="font-sans text-xs text-white/40 hover:text-white/70 transition-colors">Datenschutz</a>
-          <a href="#" class="font-sans text-xs text-white/40 hover:text-white/70 transition-colors">Kontakt</a>
-        </div>
       </div>
 
     </div>
@@ -1270,25 +1261,6 @@
     }
 
 
-    // ── Email form handler ───────────────────────────────
-    const emailForm = document.querySelector('#anmelden form');
-    if (emailForm) {
-      emailForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-      });
-    }
-
-    // Prevent default on the button (no form tag – intercept click)
-    const signupBtn = document.querySelector('#anmelden button');
-    if (signupBtn) {
-      signupBtn.addEventListener('click', (e) => {
-        const input = signupBtn.previousElementSibling;
-        if (input && input.value) {
-          signupBtn.textContent = '✓ Eingetragen';
-          signupBtn.disabled = true;
-        }
-      });
-    }
   </script>
 
 </body>
